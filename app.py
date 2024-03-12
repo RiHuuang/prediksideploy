@@ -8,13 +8,13 @@ from sklearn.decomposition import PCA
 
 # Function to load the pickled model
 def load_model():
-    with open("..\Code\model.pkl", "rb") as f:
+    with open("model.pkl", "rb") as f:
         model = pickle.load(f)
     return model
 
 # Function to load the pickled scaler
 def load_scaler():
-    with open("..\Code\scaler.pkl", "rb") as f:
+    with open("scaler.pkl", "rb") as f:
         scaler = pickle.load(f)
     return scaler
 
