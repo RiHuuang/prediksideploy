@@ -36,6 +36,28 @@ def scale_prediction(prediction):
 
 saved_mean = np.array([1975.5581668051009, 7.530561391508281, 1922.2551912835295, 1708.3309718082767, 47.55688812234329, 1.6881809742512337, 3.329750329799189, 1.4284946499242683, 0.17266819758635854, 0.45219133238872333, 14610.408169248058, 12447.084526310646, 74.68114525822055, -122.2132654028436])
 saved_std = np.array([774.8334603691661, 1.0391917852731496, 614.9320098425608, 727.2964609354087, 0.14103849190104215, 0.6704659761079718, 0.9128847124369232, 0.5491614709044589, 0.6409504521819265, 0.6292633043508314, 40109.55681337646, 26538.59224971217, 378.76164705607835, 0.1424124032485596])
+house_data_desc = {
+  "date": "Date of home sale",
+  "price": "Price of each home sold",
+  "bedrooms": "Number of bedrooms",
+  "bathrooms": "Number of bathrooms (including half baths)",
+  "sqft_living": "Square footage of living space",
+  "sqft_lot": "Square footage of land",
+  "floors": "Number of floors",
+  "waterfront": "Dummy variable for waterfront view",
+  "view": "View quality index (0-4, higher is better)",
+  "condition": "Condition index (1-5)",
+  "grade": "Overall construction and design quality (1-3: below avg, 7: average, 11-13: high quality)",
+  "sqft_above": "Square footage of above ground living space",
+  "sqft_basement": "Square footage of below ground living space",
+  "yr_built": "Year the house was built",
+  "yr_renovated": "Year of last renovation (may be empty)",
+  "zipcode": "Zipcode area",
+  "lat": "Latitude coordinate",
+  "long": "Longitude coordinate",
+  "sqft_living15": "Average living space of 15 nearest neighbors",
+  "sqft_lot15": "Average land area of 15 nearest neighbors",
+}
 
 def standardize_new_data(input_data, features):
     # Create a StandardScaler object with loaded scaling parameters
@@ -59,8 +81,6 @@ def main():
     This app predicts the **House Price**!
     """)
 
-    st.sidebar.header('User Input Features')
-
     # Define the features required for prediction
     features = ['sqft_living','grade','sqft_living15','sqft_above','lat','bathrooms','bedrooms','floors','view','sqft_basement','sqft_lot','sqft_lot15','yr_renovated','long']
     # Create a form for user input
@@ -68,7 +88,13 @@ def main():
     data = {}
 
     for feature in features:
-        data[feature] = st.number_input(label=feature, value=0.0, step=1.0, format="%.4f")
+        description = house_data_desc[feature]  # Access description from dictionary
+        data[feature] = st.number_input(
+            label=f"{feature} ({description})",  # Display label with both feature and description
+            value=0.0,
+            step=1.0,
+            format="%.4f"
+        )
 
     # Create a button to submit data
     submit_button = st.button("Proses Data")
