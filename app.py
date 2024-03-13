@@ -52,6 +52,32 @@ def standardize_new_data(input_data, features):
 # Main function for the Streamlit web app
 def main():
     st.write(f"-1.224213 : ${scale_prediction(-1.224213)} harusnya 221900.0")
+    st.write(f" id                    7129300520
+date                  2014-10-13
+price                     221900
+bedrooms                       3
+bathrooms                      1
+sqft_living                 1180
+sqft_lot                    5650
+floors                         1
+waterfront                     0
+view                           0
+condition                      3
+grade                          7
+sqft_above                  1180
+sqft_basement                  0
+yr_built                    1955
+yr_renovated                   0
+zipcode                    98178
+lat                      47.5112
+long                    -122.257
+sqft_living15               1340
+sqft_lot15                  5650
+yr_renovate_to_now             0
+month                         10
+year                        2014
+")
+    
     st.write("""
     # Simple House Price Prediction App
     This app predicts the **House Price**!
